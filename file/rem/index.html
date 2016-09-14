@@ -1,0 +1,301 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0"/>
+<title>无标题文档</title>
+<style>
+	*{
+		margin:0;
+		padding:0;
+		list-style:none;
+	}
+	.w{
+		width: 14rem;
+		margin: 0 auto;
+		overflow:hidden;
+	}
+
+	.clearfix:after{ 
+		display:block; 
+		content:''; 
+		clear:both;
+	}
+	.clearfix{
+		zoom:1;
+	}
+	.fl{
+		float:left;
+	}
+	.fr{
+		float:right;
+	}
+	h2{
+		height:1.35rem;
+		line-height:1.35rem;
+		font-size:1rem;
+		font-weight:bold;
+		color:#000;
+	}
+    p{
+		line-height:1rem;
+		font-size:.55rem;
+		color:#8b8b8b;
+		font-weight:bold;
+	}
+	.header{
+		display:-webkit-box;
+		height:3rem;
+		background:#344b5d;
+	}
+	.left{
+		width:3rem;
+		height:3rem;
+		background:url(img/1.png) no-repeat center center;
+		border-right:0.05rem solid #4c6279;
+		background-size:1rem;
+	}
+	h1{ 
+		-webkit-box-flex:1; 
+		color:#FFF; 
+		text-align:center; 
+		line-height:3rem; 
+		font-size:1.2rem;
+	}
+	.right{
+		width:3rem;
+		height:3rem;
+		background:url(img/2.png) no-repeat center center;
+		border-left:0.05rem solid #4c6279;
+		background-size:0.925rem 0.6rem;
+	}
+	.title{
+		height:2.1rem;
+		border-bottom:0.05rem solid #e5e5e5;
+		line-height:2.1rem;
+		font-size:0.7rem;
+		color:#cecece; 
+	}
+	.main{
+		margin-top:1rem;
+		border-bottom:0.05rem solid #e5e5e5;
+		padding-bottom:0.7rem;
+	}
+	.banner{
+		width:14rem;
+		height:9.3rem;
+		background:url(img/3.jpg) no-repeat;
+		background-size:14rem 9.3rem;
+		margin-bottom:1rem;
+	}
+	.content{
+		margin-top:1rem;
+		padding-bottom:0.5rem;
+		border-bottom:0.05rem solid #e5e5e5;
+	}
+	.content .con{
+		height:5rem;
+	}
+	.con .icon{
+		margin-right:1rem;
+	}
+	.con .icon img{
+		width:4rem;
+		height:4rem;
+	}
+	.con .side{
+		width:9rem;	
+	}
+	.column{
+		margin-top:1rem;
+		border-bottom:0.05rem solid #e5e5e5;
+	}
+	.column ul{
+		margin:1rem 0;
+		width:18rem;
+	}
+	.column ul li{
+		width:4rem;
+		height:4rem;
+		float:left;
+		margin:0 1rem 1rem 0;
+	}
+	.column ul li img{
+		width:4rem;
+		height:4rem;
+	}
+	.about{
+		border-bottom:0.05rem solid #e5e5e5;
+		margin-top:1rem;
+		padding-bottom:0.5rem;
+	}
+	.about .con{
+		margin-top:1rem;
+		position:relative;
+	}
+	.about .con span{
+		position:absolute;
+		right:0;
+		bottom:0;
+		line-height:1rem;
+		font-size:.55rem;
+		color:#696969;
+		font-weight:bold;
+	}
+	.shop{
+		margin-top:1rem;
+		padding-bottom:1rem;
+		text-align:center;
+		border-bottom:0.05rem solid #e5e5e5;
+	}
+	.shop .ulbox{
+		width:100%;
+		height:3.5rem;
+		position:relative;
+	}
+	.shop .ulbox ul{
+		position:absolute;
+		left:50%;
+		margin-left:calc(-10.5rem/2);
+	}
+	.shop .ulbox ul li{
+		float:left;
+		width:2.5rem;
+		height:2.5rem;
+		margin:0.5rem;
+	}
+	.shop .ulbox ul li img{
+		width:2.5rem;
+		height:2.5rem;
+	}
+	.foot{
+		text-align:center;
+		margin-top:1rem;
+		padding-bottom:1rem;
+	}
+	.footer{
+		width:100%;
+		height:3rem;
+		text-align:center;
+		background:#000;
+		position:relative;
+	}
+	.footer .footbox{
+		position:relative;
+		height:2rem
+	}
+	.footer ul{
+		position:absolute;
+		left:50%;
+		margin-left:calc(-16rem/2);
+		width:16rem;
+		height:2rem;
+		
+	}
+	.footer ul li{
+		float:left;
+		width:1rem;
+		height:1rem;
+		margin:0.5rem;
+	}
+	.footer ul li img{
+		width:1rem;
+		height:1rem;
+	}
+</style>
+<script>
+(function(){
+	function change(){
+		var font=document.documentElement.clientWidth/(320/20);
+		document.documentElement.style.fontSize=font+'px';	
+	}
+	window.addEventListener('resize',change,false);
+	change();
+})()
+</script>
+</head>
+ 
+<body>
+	<div class="header">
+    	<div class="left"></div>
+        <h1 class="logo">HEXAGONE</h1>
+        <div class="right"></div>
+    </div>
+    <div class="title w">	
+    	HOMEPAGE
+    </div>
+    <div class="main w">
+    	<div class="banner"></div>
+        <h2>WELL,HELLO,THERE!</h2>
+        <p>Honeycomb provides a unique design and a flat interface to make it stand out from the crowd!The nav is swipable,by dragging any part of the page to the right!Check it out yourself!</p>
+    </div>
+    <div class="content w">
+    	<div class="con clearfix">
+        	<div class="icon fl"><img src="img/4.jpg"/></div>
+            <div class="side fl">
+            	<h2>EASY TO USE!</h2>
+                <P>THERE 第一个 no point to comlicate your lift!We build products that are easy to use abnd customize！</P>
+            </div>
+        </div>
+        <div class="con clearfix">
+        	<div class="icon fl"><img src="img/5.jpg"/></div>
+            <div class="side fl">
+            	<h2>EASY TO USE!</h2>
+                <P>Patience is key when buliding for quality and speed!We take care of every possible aspect!</P>
+            </div>
+        </div>
+    </div>
+    <div class="column w">
+    	<h2>SOME OF OUR WORKS!</h2>
+        <P>A gallery is essential in any template,so,if it,sa mobile device,why noe have a touch one!</P>
+        <ul class="clearfix">
+        	<li><img src="img/5.jpg"/></li>
+            <li><img src="img/5.jpg"/></li>
+            <li><img src="img/5.jpg"/></li>
+            <li><img src="img/5.jpg"/></li>
+            <li><img src="img/5.jpg"/></li>
+            <li><img src="img/5.jpg"/></li>
+        </ul>
+    </div>
+    <div class="about w">
+    	<h2>TESTIFOROGO</h2>
+        <P>A gallery is essential in any template,so,if it,sa mobile device,why noe have a touch one A gallery is essential in any template,so,!</P>
+        <div class="con clearfix">
+        	<div class="icon fl"><img src="img/6.jpg"/></div>
+            <div class="side fl">
+                <P>Patience is key when buliding for quality and speed!We take care of every possible aspect!</P>
+                <span>john Doe-Annoynmus Buyer</span>
+            </div>
+        </div>      
+    </div>
+    <div class="shop w">
+    	<h2>get social with us!</h2>
+        <P>Patience is key when buliding for quality and speed!We take care of every possible aspect!</P>
+        <div class="ulbox">
+        	<ul class="clearfix">
+            	<li><img src="img/7.jpg"/></li>
+                <li><img src="img/8.jpg"/></li>
+                <li><img src="img/9.jpg"/></li            </ul>
+        </div>
+    </div>
+    <div class="foot W">
+    	<p>COFDFORR 2013</p>
+        <p>DKL DFKKFD DFFUEEO</p>
+    </div>
+    <div class="footer">
+    	<div class="footbox">
+        	<ul class="clearfix">
+                <li><img src="img/10.jpg"/></li>
+                <li><img src="img/10.jpg"/></li>
+                <li><img src="img/10.jpg"/></li>
+                <li><img src="img/10.jpg"/></li>
+                <li><img src="img/10.jpg"/></li>
+                <li><img src="img/10.jpg"/></li>
+                <li><img src="img/10.jpg"/></li>
+                <li><img src="img/10.jpg"/></li>
+        </ul>
+        </div>
+    	<p>JOF KLFRL LDLL DEIRJF IEDREJ</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>吴嘉双--前端开发工程师</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="js/jquery.parallax-1.1.3.js"></script>
+	<script type="text/javascript" src="js/jquery.localscroll-1.2.7-min.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollTo-1.4.2-min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#nav').localScroll(800);
+
+			//.parallax(xPosition, speedFactor, outerHeight) options:
+			//xPosition - Horizontal position of the element
+			//inertia - speed to move relative to vertical scroll. Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling
+			//outerHeight (true/false) - Whether or not jQuery should use it's outerHeight option to determine when a section is in the viewport
+			$('#intro').parallax("50%", 0.2);
+			$('#second').parallax("50%", 0.2);
+			$('#third').parallax("50%", 0.2);
+			$('#fouth').parallax("50%", 0.2);
+			$('#fifth').parallax("50%", 0.2);
+			$('.bg').parallax("20%", 0.5);
+
+			//导航条
+			var aNavBtn=$('.nav_bg');
+			$(window).scroll(function(){
+				var scrollT=$(document).scrollTop();
+				var t=document.documentElement.clientHeight;
+				for(var i=0;i<aNavBtn.length-1;i++){
+					if(scrollT>=t*i && scrollT<=t*(i+1)){
+						aNavBtn.eq(i).css('top',(scrollT-t*i)*(60/t)+'px');  //导航块高度为60px;
+						aNavBtn.eq(i+1).css('top',((t*(i+1)-scrollT)*(60/t)+'px'));
+					}else if(scrollT<t*i){
+						aNavBtn.eq(i+1).css('top',60*(i+1)+'px');
+					}else if(scrollT>t*(i+1)){
+						aNavBtn.eq(i).css('top',60*(i+1)+'px');
+					}
+				}
+			});
+
+			//第一屏 滑入的边框效果
+			var oIntroLi=$('.intro-con li');
+			oIntroLi.eq(0).hover(
+					function(){
+						oIntroLi.eq(0).css({background:'#ff57ca'});
+						$('.intro-con li .bor-left.bor1').animate({top:0});
+						$('.intro-con li .bor-right.bor1').animate({bottom:0});
+						$('.intro-con li .bor-top.bor1').animate({left:0});
+						$('.intro-con li .bor-bottom.bor1').animate({right:0});
+					},
+					function(){
+						oIntroLi.eq(0).css({background:'#76CDD3'});
+						$('.intro-con li .bor-left.bor1').animate({top:-80});
+						$('.intro-con li .bor-right.bor1').animate({bottom:-80});
+						$('.intro-con li .bor-top.bor1').animate({left:-200});
+						$('.intro-con li .bor-bottom.bor1').animate({right:-200});
+					}
+			);
+			oIntroLi.eq(1).hover(
+					function(){
+						oIntroLi.eq(1).css({background:'#ff57ca'});
+						$('.intro-con li .bor-left.bor2').animate({top:0});
+						$('.intro-con li .bor-right.bor2').animate({bottom:0});
+						$('.intro-con li .bor-top.bor2').animate({left:0});
+						$('.intro-con li .bor-bottom.bor2').animate({right:0});
+					},
+					function(){
+						oIntroLi.eq(1).css({background:'#76CDD3'});
+						$('.intro-con li .bor-left.bor2').animate({top:-80});
+						$('.intro-con li .bor-right.bor2').animate({bottom:-80});
+						$('.intro-con li .bor-top.bor2').animate({left:-200});
+						$('.intro-con li .bor-bottom.bor2').animate({right:-200});
+					}
+			);
+		});
+	</script>
+	<script src="js/move1.0.js"></script>
+	<script src="js/common.js"></script>
+	<script>
+
+		function hoverDir(obj, ev){
+			var scrollT=document.documentElement.scrollTop||document.body.scrollTop;
+			var x=getPos(obj).left+obj.offsetWidth/2-ev.clientX;
+			var y=getPos(obj).top+obj.offsetHeight/2-ev.clientY-scrollT;
+
+			return Math.round((Math.atan2(y, x)*180/Math.PI+180)/90)%4;
+		}
+		window.onload = function () {
+			//设置每屛的高度
+			var aBox=getByClass(document.body,'box');
+			var t=document.documentElement.clientHeight;
+			for(var j=0;j<aBox.length;j++){
+				aBox[j].style.height=t+'px';
+			}
+
+
+			//第二屏 背景滑入滑出移动效果
+			var oUl=document.getElementById('third_center');
+			var aLi=oUl.children;
+
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].onmouseenter=function(ev){
+					var oEvent=ev || event;
+					var n=hoverDir(this, oEvent);
+
+					var oDiv=this.children[1];
+					switch(n){
+						case 0:
+							oDiv.style.left='200px';
+							oDiv.style.top=0;
+							break;
+						case 1:
+							oDiv.style.left=0;
+							oDiv.style.top='200px';
+							break;
+						case 2:
+							oDiv.style.left='-200px';
+							oDiv.style.top=0;
+							break;
+						case 3:
+							oDiv.style.left=0;
+							oDiv.style.top='-200px';
+							break;
+					}
+					move(oDiv, {left: 0, top: 0});
+				};
+
+				aLi[i].onmouseleave=function(ev){
+					var oEvent=ev || event;
+					var n=hoverDir(this, oEvent);
+
+					var oDiv=this.children[1];
+					switch(n){
+						case 0:
+							move(oDiv, {left: 200, top: 0});
+							break;
+						case 1:
+							move(oDiv, {left: 0, top: 200});
+							break;
+						case 2:
+							move(oDiv, {left: -200, top: 0});
+							break;
+						case 3:
+							move(oDiv, {left: 0, top: -200});
+							break;
+					}
+				};
+			}
+			//第一屏 小球拖拽弹性运动
+
+		};
+
+	</script>
+</head>
+
+<body>
+	<div id="top_nav">
+		<ul id="nav">
+			<li>
+				<div class="nav_bg color1"></div>
+				<a href="index.html#intro" title="Next Section" class="iconfont">&#xe652;主页</a>
+			</li>
+			<li>
+				<div class="nav_bg color2"></div>
+				<a href="index.html#second" title="Next Section" class="iconfont">&#xe6c3;技能</a>
+			</li>
+			<li>
+				<div class="nav_bg color3"></div>
+				<a href="index.html#third" title="Next Section" class="iconfont">&#xe632;作品</a>
+			</li>
+			<li>
+				<div class="nav_bg color5"></div>
+				<a href="index.html#fifth" title="Next Section" class="iconfont">&#xe69e;联系</a>
+			</li>
+		</ul>
+	</div> <!--nav-->
+
+    <div id="intro" class="box">
+		<div class="story w">
+
+			<div class="intro-center">
+				<div class="intro-img">
+					<img src="images/intro-img.jpg" alt="哎呦，头像图片挂掉啦" />
+				</div>
+				<div class="name">吴嘉双</div>
+				<ul class="intro-con">
+                	<li>
+						<a href="index2.html#fifth">联系方式</a>
+						<div class="bor-left bor1"></div>
+						<div class="bor-top bor1"></div>
+						<div class="bor-right bor1"></div>
+						<div class="bor-bottom bor1"></div>
+					</li>
+					<li>
+						<a href="index2.html#third">作品演示</a>
+						<div class="bor-left bor2"></div>
+						<div class="bor-top bor2"></div>
+						<div class="bor-right bor2"></div>
+						<div class="bor-bottom bor2"></div>
+					</li>
+				</ul>
+			</div>
+	    </div> <!--.story-->
+	</div> <!--intro-->
+
+    <div id="second" class="box">
+		<div class="story w">
+			<ul class="second-center">
+				<li>
+					<a href="javascript:;" >
+						<div><img alt="" src="images/js.png"/></div>
+						<div>
+							<h3>Javascript</h3>
+							<p>掌握面向对象的js开发</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;" >
+						<div><img alt="" src="images/HTML.png"/></div>
+						<div>
+							<h3>HTML</h3>
+							<p>扎实的html基础</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;" >
+						<div><img alt="" src="images/css.png"/></div>
+						<div>
+							<h3>CSS</h3>
+							<p>浏览器兼容技术/响应式设计</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;" >
+						<div><img alt="" src="images/jQuery.png"/></div>
+						<div>
+							<h3>jQuery</h3>
+							<p>熟练编写jQuery及Bootstrap代码</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;" >
+						<div><img alt="" src="images/Nodejs.png"/></div>
+						<div>
+							<h3>Node.js</h3>
+							<p>熟练使用Node.js</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;" >
+						<div><img alt="" src="images/angular.jpg"/></div>
+						<div>
+							<h3>AngularJS</h3>
+							<p>了解后端开发语言PHP对于AngularJS等前端MVC框架有研究</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;" >
+						<div><img alt="" src="images/php.png"/></div>
+						<div>
+							<h3>PHP</h3>
+							<p>了解后端开发语言</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;" >
+						<div><img alt="" src="images/MySQL.png"/></div>
+						<div>
+							<h3>mysql</h3>
+							<p>熟练使用mysql等数据库</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+	    </div> <!--.story-->
+	</div> <!--second-->
+
+    <div id="third" class="box">
+    	<div class="story w">
+        	<ul class="third-center" id="third_center">
+            	<li>
+					<img src="images/second1.jpg" alt="skill配图">
+					<div class="third-opa">
+						<a href="file/Baidu/index.html">模拟百度搜索</a>
+					</div>
+				</li>
+                <!--jsonp-->
+				<li>
+					<img src="images/second2.jpg" alt="skill配图">
+					<div class="third-opa">
+						<a href="file/rev/index.html">东风标致微信动画</a>
+					</div>
+				</li>
+                <!--html5-->
+				<li>
+					<img src="images/second3.jpg" alt="skill配图">
+					<div class="third-opa">
+						<a href="file/Shadow/Shadow.html">阴影选项卡</a>
+					</div>
+				</li>
+                <!--html5-->
+				<li>
+					<img src="images/second4.jpg" alt="skill配图">
+					<div class="third-opa">
+						<a href="file/Mob/tab.html">无缝滚动</a>
+					</div>
+				</li>
+                <!--jquery-->
+				<li>
+					<img src="images/second5.jpg" alt="skill配图">
+					<div class="third-opa">
+						<a href="file/Fish/Fish.html">模拟捕鱼达人</a>
+					</div>
+				</li>
+                <!--canvas-->
+				<li>
+					<img src="images/second6.jpg" alt="skill配图">
+					<div class="third-opa">
+						<a href="file/table/index.html">模拟爱奇艺首页</a>
+					</div>
+				</li>
+                <!--html/css-->
+				<li>
+					<img src="images/second1.jpg" alt="skill配图">
+					<div class="third-opa">
+						<a href="file/car/index.html">模拟二手车移动端</a>
+					</div>
+				</li>
+                <!--百分比布局-->
+				<li>
+					<img src="images/second7.jpg" alt="skill配图">
+					<div class="third-opa">
+						<a href="file/rem/index.html">rem移动端页面</a>
+					</div>
+				</li>
+                <!--rem布局-->
+        	</ul>
+        </div>
+    </div> <!--third-->
+
+
+    <div id="fifth" class="box">
+		<div class="story w">
+			<ul class="fifth-center">
+				<li><i class="iconfont color">&#xe669;</i>15321795669</li>
+				<li><i class="iconfont color">&#xe63e;</i>1194429916qq.com</li>
+				<li><i class="iconfont color">&#xe636;</i>lngywujiashaung</li>
+				<li><i class="iconfont color">&#xe61c;</i>1194429916</li>
+				<li class="download"><a href="images/resume.doc">下载简历</a></li>
+			</ul>
+			<div id="intro_box" class="weChat"></div>
+		</div> <!--.story-->
+	</div> <!--fifth-->
+
+</body>
+</html>
